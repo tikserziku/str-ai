@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STR AI — Statybos techniniai reglamentai</title>
+    <style>
+        :root {
+            --bg: #0f0f1a;
+            --bg-card: #1a1a2e;
+            --bg-input: #16162b;
+            --accent: #00d4aa;
+            --accent-dim: rgba(0, 212, 170, 0.15);
+            --accent-glow: rgba(0, 212, 170, 0.3);
+            --text: #e0e0e8;
+            --text-dim: #8888a0;
+            --red: #ff5252;
+            --red-dim: rgba(255, 82, 82, 0.15);
+            --green: #00d4aa;
+            --green-dim: rgba(0, 212, 170, 0.15);
+            --border: #2a2a45;
+            --radius: 12px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ---- Header ---- */
+        header {
+            text-align: center;
+            padding: 60px 20px 20px;
+        }
+        header h1 {
+            font-size: 2.6rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+        header h1 span { color: var(--accent); }
+        header p {
+            margin-top: 8px;
+            color: var(--text-dim);
+            font-size: 1.05rem;
+        }
+        .demo-badge {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            background: var(--accent-dim);
+            color: var(--accent);
+            border: 1px solid var(--accent);
+        }
+
+        /* ---- Search ---- */
+        .search-wrap {
+            max-width: 700px;
+            margin: 30px auto 0;
+            padding: 0 20px;
+            width: 100%;
+        }
+        .search-box {
+            display: flex;
+            gap: 0;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1.5px solid var(--border);
+            transition: border-color 0.2s;
+        }
+        .search-box:focus-within {
+            border-color: var(--accent);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+        .search-box input {
+            flex: 1;
+            padding: 18px 22px;
+            font-size: 1.1rem;
+            background: var(--bg-input);
+            color: var(--text);
+            border: none;
+            outline: none;
+        }
+        .search-box input::placeholder { color: var(--text-dim); }
+        .search-box button {
+            padding: 18px 32px;
+            font-size: 1rem;
+            font-weight: 600;
+            background: var(--accent);
+            color: var(--bg);
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+        .search-box button:hover { background: #00e8bb; }
+        .search-box button:disabled {
+            opacity: 0.5;
+            cursor: wait;
+        }
+
+        /* ---- Examples ---- */
+        .examples {
+            max-width: 700px;
+            margin: 18px auto 0;
+            padding: 0 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .examples span {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            padding-top: 2px;
+        }
+        .example-btn {
+            padding: 6px 14px;
+            font-size: 0.85rem;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-dim);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .example-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--accent-dim);
+        }
+
+        /* ---- Results ---- */
+        .results-area {
+            max-width: 750px;
+            margin: 36px auto 0;
+            padding: 0 20px 60px;
+            width: 100%;
+        }
+
+        .answer-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px 28px;
+            margin-bottom: 24px;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+        .answer-box .label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        .result-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 22px 26px;
+            margin-bottom: 14px;
+            transition: border-color 0.2s;
+        }
+        .result-card:hover { border-color: var(--accent); }
+
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        .str-number {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--accent);
+        }
+        .str-title {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            margin-left: 8px;
+        }
+        .punkt {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 600;
+        }
+        .status-badge.galioja {
+            background: var(--green-dim);
+            color: var(--green);
+            border: 1px solid var(--green);
+        }
+        .status-badge.neteko {
+            background: var(--red-dim);
+            color: var(--red);
+            border: 1px solid var(--red);
+        }
+
+        .quote-block {
+            margin: 12px 0;
+            padding: 14px 18px;
+            border-left: 3px solid var(--accent);
+            background: rgba(0, 212, 170, 0.05);
+            border-radius: 0 8px 8px 0;
+            font-size: 0.95rem;
+            line-height: 1.65;
+            color: var(--text);
+        }
+
+        .etar-link {
+            display: inline-block;
+            margin-top: 8px;
+            font-size: 0.85rem;
+            color: var(--accent);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+        .etar-link:hover { opacity: 1; text-decoration: underline; }
+
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-dim);
+        }
+
+        /* ---- Spinner ---- */
+        .spinner {
+            display: none;
+            text-align: center;
+            padding: 30px;
+            color: var(--text-dim);
+        }
+        .spinner.active { display: block; }
+        .spinner::before {
+            content: '';
+            display: inline-block;
+            width: 28px; height: 28px;
+            border: 3px solid var(--border);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ---- Footer ---- */
+        footer {
+            margin-top: auto;
+            text-align: center;
+            padding: 28px 20px;
+            color: var(--text-dim);
+            font-size: 0.82rem;
+            border-top: 1px solid var(--border);
+        }
+        footer span { color: var(--accent); }
+
+        /* ---- Responsive ---- */
+        @media (max-width: 600px) {
+            header { padding-top: 36px; }
+            header h1 { font-size: 1.8rem; }
+            .search-box { flex-direction: column; }
+            .search-box button { padding: 14px; }
+            .examples { justify-content: center; }
+            .result-header { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>STR <span>AI</span></h1>
+    <p>Paieška Lietuvos statybos techniniuose reglamentuose</p>
+    {% if demo %}
+    <div class="demo-badge">Demo rezimas — RAG variklis neprijungtas</div>
+    {% endif %}
+</header>
+
+<div class="search-wrap">
+    <form class="search-box" id="searchForm">
+        <input type="text" id="queryInput" name="query"
+               placeholder="Ivesk klausima apie statybos reglamentus..."
+               autocomplete="off" autofocus>
+        <button type="submit" id="searchBtn">Ieskoti</button>
+    </form>
+</div>
+
+<div class="examples">
+    <span>Pavyzdziai:</span>
+    <button class="example-btn" data-q="Kas yra paprastasis remontas?">Kas yra paprastasis remontas?</button>
+    <button class="example-btn" data-q="Ar reikia SLD?">Ar reikia SLD?</button>
+    <button class="example-btn" data-q="Plieninių konstrukcijų reikalavimai">Plienines konstrukcijos</button>
+    <button class="example-btn" data-q="Gaisrinė sauga statiniuose">Gaisrine sauga</button>
+    <button class="example-btn" data-q="Statinio kategorija">Statinio kategorija</button>
+</div>
+
+<div class="results-area" id="resultsArea">
+    <div class="spinner" id="spinner">Ieškoma...</div>
+    <div id="resultsContent"></div>
+</div>
+
+<footer>
+    <span>STR AI</span> &middot; Beta &middot; 2026
+</footer>
+
+<script>
+const form = document.getElementById('searchForm');
+const input = document.getElementById('queryInput');
+const btn = document.getElementById('searchBtn');
+const spinner = document.getElementById('spinner');
+const content = document.getElementById('resultsContent');
+
+// Example buttons
+document.querySelectorAll('.example-btn').forEach(b => {
+    b.addEventListener('click', () => {
+        input.value = b.dataset.q;
+        form.dispatchEvent(new Event('submit'));
+    });
+});
+
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const q = input.value.trim();
+    if (!q) return;
+
+    btn.disabled = true;
+    spinner.classList.add('active');
+    content.innerHTML = '';
+
+    try {
+        const res = await fetch('/search', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ query: q })
+        });
+        const data = await res.json();
+
+        if (data.error) {
+            content.innerHTML = `<div class="no-results">${esc(data.error)}</div>`;
+            return;
+        }
+
+        let html = '';
+
+        // Answer box
+        if (data.answer) {
+            html += `<div class="answer-box">
+                <div class="label">Atsakymas</div>
+                ${esc(data.answer)}
+            </div>`;
+        }
+
+        // Result cards
+        if (data.results && data.results.length) {
+            data.results.forEach(r => {
+                const isValid = r.status === 'galioja';
+                const badgeClass = isValid ? 'galioja' : 'neteko';
+
+                html += `<div class="result-card">
+                    <div class="result-header">
+                        <div>
+                            <span class="str-number">${esc(r.str_number)}</span>
+                            <span class="str-title">${esc(r.title)}</span>
+                            <span class="punkt">&middot; ${esc(r.punkt)}</span>
+                        </div>
+                        <span class="status-badge ${badgeClass}">${esc(r.status_label)}</span>
+                    </div>
+                    <div class="quote-block">${esc(r.quote)}</div>
+                    <a class="etar-link" href="${esc(r.etar_url)}" target="_blank" rel="noopener">
+                        Atidaryti e-tar.lt &rarr;
+                    </a>
+                </div>`;
+            });
+        } else if (!data.answer) {
+            html += '<div class="no-results">Rezultatu nerasta</div>';
+        }
+
+        content.innerHTML = html;
+
+    } catch (err) {
+        content.innerHTML = `<div class="no-results">Klaida: ${esc(err.message)}</div>`;
+    } finally {
+        btn.disabled = false;
+        spinner.classList.remove('active');
+    }
+});
+
+function esc(s) {
+    if (!s) return '';
+    const d = document.createElement('div');
+    d.textContent = s;
+    return d.innerHTML;
+}
+</script>
+
+</body>
+</html>
