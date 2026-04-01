@@ -1,0 +1,137 @@
+[
+  {
+    "str_number": "STR 1.01.08:2002",
+    "str_title": "Statinio statybos rūšys",
+    "punkt": "12",
+    "text": "Statinio statybos rūšys yra šios: 1) nauja statyba; 2) rekonstravimas; 3) remontas (atnaujinimas); 4) griovimas; 5) kultūros paveldo statinio tvarkomieji statybos darbai; 6) kultūros paveldo statinio atkūrimas.",
+    "status": "galioja",
+    "expired_date": null,
+    "source_url": "https://www.e-tar.lt/portal/lt/legalAct/TAR.F6F4B89E0E73"
+  },
+  {
+    "str_number": "STR 1.01.08:2002",
+    "str_title": "Statinio statybos rūšys",
+    "punkt": "12.1",
+    "text": "Nauja statyba – statinio statyba žemės sklype (teritorijoje), kuriame nėra statinių arba kuriame esami statiniai nugriaunami ir statomi nauji statiniai.",
+    "status": "galioja",
+    "expired_date": null,
+    "source_url": "https://www.e-tar.lt/portal/lt/legalAct/TAR.F6F4B89E0E73"
+  },
+  {
+    "str_number": "STR 1.01.08:2002",
+    "str_title": "Statinio statybos rūšys",
+    "punkt": "12.2",
+    "text": "Rekonstravimas – statybos darbai, kuriais keičiami statinio laikančiųjų konstrukcijų ir (ar) kitų pagrindinių statinio dalių parametrai (matmenys, apkrovos ir pan.).",
+    "status": "galioja",
+    "expired_date": null,
+    "source_url": "https://www.e-tar.lt/portal/lt/legalAct/TAR.F6F4B89E0E73"
+  },
+  {
+    "str_number": "STR 1.01.08:2002",
+    "str_title": "Statinio statybos rūšys",
+    "punkt": "12.3",
+    "text": "Remontas (atnaujinimas) – statybos darbai, kuriais atkuriamos ar pagerinamos statinio ir (ar) jo dalių fizinės ir mechaninės savybės, nekeičiant statinio laikančiųjų konstrukcijų ir kitų pagrindinių statinio dalių parametrų.",
+    "status": "galioja",
+    "expired_date": null,
+    "source_url": "https://www.e-tar.lt/portal/lt/legalAct/TAR.F6F4B89E0E73"
+  },
+  {
+    "str_number": "STR 1.01.08:2002",
+    "str_title": "Statinio statybos rūšys",
+    "punkt": "12.4",
+    "text": "Griovimas – statybos darbai, kuriais statinys ar jo dalis išardomos, pašalinant statybines medžiagas ir (ar) konstrukcijas iš statybvietės.",
+    "status": "galioja",
+    "expired_date": null,
+    "source_url": "https://www.e-tar.lt/portal/lt/legalAct/TAR.F6F4B89E0E73"
+  },
+  {
+    "str_number": "STR 1.01.08:2002",
+    "str_title": "Statinio statybos rūšys",
+    "punkt": "12.5",
+    "text": "Kultūros paveldo statinio tvarkomieji statybos darbai – statybos darbai, kuriais kultūros paveldo statinys ar jo dalis tvarkoma, siekiant išsaugoti vertingąsias savybes.",
+    "status": "galioja",
+    "expired_date": null,
+    "source_url": "https://www.e-tar.lt/portal/lt/legalAct/TAR.F6F4B89E0E73"
+  },
+  {
+    "str_number": "STR 1.01.08:2002",
+    "str_title": "Statinio statybos rūšys",
+    "punkt": "12.6",
+    "text": "Kultūros paveldo statinio atkūrimas – statybos darbai, kuriais atkuriamas sunykęs ar sunaikintas kultūros paveldo statinys ar jo dalis pagal išlikusius autentiškus fragmentus, ikonografinę, projektinę ir kitą medžiagą.",
+    "status": "galioja",
+    "expired_date": null,
+    "source_url": "https://www.e-tar.lt/portal/lt/legalAct/TAR.F6F4B89E0E73"
+  },
+  {
+    "str_number": "STR 1.01.08:2002",
+    "str_title": "Statinio statybos rūšys",
+    "punkt": "12.7",
+    "text": "Paprastasis remontas – remontas, kurio metu keičiamos ar taisomos statinio dalys ir (ar) inžinerinės sistemos, nedidinant statinio ir (ar) jo dalių apkrovų ir nepakeičiant statinio išvaizdos bei paskirties.",
+    "status": "galioja",
+    "expired_date": null,
+    "source_url": "https://www.e-tar.lt/portal/lt/legalAct/TAR.F6F4B89E0E73"
+  },
+  {
+    "str_number": "STR 1.01.08:2002",
+    "str_title": "Statinio statybos rūšys",
+    "punkt": "12.8",
+    "text": "Kapitalinis remontas – remontas, kurio metu pakeičiamos ar sustiprinamos pagrindinės statinio laikančiosios konstrukcijos, nekeičiant statinio matmenų.",
+    "status": "galioja",
+    "expired_date": null,
+    "source_url": "https://www.e-tar.lt/portal/lt/legalAct/TAR.F6F4B89E0E73"
+  },
+  {
+    "str_number": "STR 1.01.08:2002",
+    "str_title": "Statinio statybos rūšys",
+    "punkt": "12.9",
+    "text": "Statinio paskirties keitimas – statybos darbai, kuriais keičiama statinio ar jo dalies paskirtis, nurodyta statinio projekte ir (ar) statinio dokumentuose.",
+    "status": "galioja",
+    "expired_date": null,
+    "source_url": "https://www.e-tar.lt/portal/lt/legalAct/TAR.F6F4B89E0E73"
+  },
+  {
+    "str_number": "STR 1.01.08:2002",
+    "str_title": "Statinio statybos rūšys",
+    "punkt": "12.10",
+    "text": "Statinio laikančiųjų konstrukcijų sustiprinimas – statybos darbai, kuriais padidinama statinio laikančiųjų konstrukcijų laikomoji galia, nepakeičiant statinio matmenų ir paskirties.",
+    "status": "galioja",
+    "expired_date": null,
+    "source_url": "https://www.e-tar.lt/portal/lt/legalAct/TAR.F6F4B89E0E73"
+  },
+  {
+    "str_number": "STR 1.01.08:2002",
+    "str_title": "Statinio statybos rūšys",
+    "punkt": "12.11",
+    "text": "Statinio atnaujinimas (modernizavimas) – remontas, kurio metu pagerinamos statinio ir (ar) jo dalių fizinės ir mechaninės savybės, energinio naudingumo charakteristikos.",
+    "status": "galioja",
+    "expired_date": null,
+    "source_url": "https://www.e-tar.lt/portal/lt/legalAct/TAR.F6F4B89E0E73"
+  },
+  {
+    "str_number": "STR 1.01.08:2002",
+    "str_title": "Statinio statybos rūšys",
+    "punkt": "12.12",
+    "text": "Statinio nadstrojka – rekonstravimo darbai, kuriais ant esamo statinio pastatomas vienas ar keli nauji aukštai.",
+    "status": "galioja",
+    "expired_date": null,
+    "source_url": "https://www.e-tar.lt/portal/lt/legalAct/TAR.F6F4B89E0E73"
+  },
+  {
+    "str_number": "STR 1.01.08:2002",
+    "str_title": "Statinio statybos rūšys",
+    "punkt": "13",
+    "text": "Statybos leidimas privalomas naujai statybai, rekonstravimui, pastato (patalpos, patalpų) paskirties keitimui, kultūros paveldo statinio tvarkomųjų statybos darbų ir atkūrimo atveju. Statybos leidimas nereikalingas paprastajam remontui.",
+    "status": "neteko galios",
+    "expired_date": "2017-01-01",
+    "source_url": "https://www.e-tar.lt/portal/lt/legalAct/TAR.F6F4B89E0E73"
+  },
+  {
+    "str_number": "STR 1.01.08:2002",
+    "str_title": "Statinio statybos rūšys",
+    "punkt": "14",
+    "text": "Statytojas (užsakovas) privalo turėti žemės sklypą arba kitą teisę naudotis žemės sklypu, kuriame numatoma statyba, ir pateikti tai patvirtinančius dokumentus kartu su prašymu išduoti statybos leidimą.",
+    "status": "neteko galios",
+    "expired_date": "2017-01-01",
+    "source_url": "https://www.e-tar.lt/portal/lt/legalAct/TAR.F6F4B89E0E73"
+  }
+]
