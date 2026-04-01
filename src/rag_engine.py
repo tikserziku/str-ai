@@ -67,10 +67,17 @@ def load_data(json_path: str | Path | None = None, force: bool = False) -> int:
         metadata={"hnsw:space": "cosine"},
     )
 
-    # Prepare batches
+    # Prepare batches (with unique suffix for duplicate punkt numbers)
     ids, documents, metadatas = [], [], []
+    seen_ids = {}
     for rec in records:
-        doc_id = f"{rec['str_number']}__p{rec['punkt']}"
+        base_id = f"{rec['str_number']}__p{rec['punkt']}"
+        if base_id in seen_ids:
+            seen_ids[base_id] += 1
+            doc_id = f"{base_id}_{seen_ids[base_id]}"
+        else:
+            seen_ids[base_id] = 0
+            doc_id = base_id
         ids.append(doc_id)
         documents.append(rec["text"])
         metadatas.append({
