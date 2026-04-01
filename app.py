@@ -173,10 +173,12 @@ def do_search(query: str) -> dict:
         model = None
     if not ans_text:
         parts = []
-        for r in raw[:3]:
+        sources = []
+        for i, r in enumerate(raw[:5], 1):
             status = "✅ Galioja" if r["status"] == "galioja" else "⚠️ NETEKO GALIOS"
-            parts.append(f"{r['str_number']}, {r['punkt']} p. [{status}]\n\"{r['text'][:300]}\"")
-        ans_text = "Rasti STR punktai:\n\n" + "\n\n".join(parts)
+            parts.append(f"[{i}] {r['str_number']}, {r['punkt']} p. [{status}]\n\"{r['text'][:300]}\"")
+            sources.append(f"[{i}] {r['str_number']}, {r['punkt']} p. — {r.get('source_url', '')}")
+        ans_text = "Rasti STR punktai:\n\n" + "\n\n".join(parts) + "\n\n---\nŠaltiniai:\n" + "\n".join(sources)
     return {"query": query, "answer": ans_text, "results": raw, "demo": False, "model": model}
 
 

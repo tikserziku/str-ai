@@ -154,14 +154,17 @@ TAISYKLĖS:
 def _build_context(hits: list[dict]) -> str:
     """Format search hits into a context block for the LLM."""
     parts = []
-    for h in hits:
-        status_tag = "GALIOJA" if h["status"] == "galioja" else "NETEKO GALIOS"
+    sources = []
+    for i, h in enumerate(hits, 1):
+        status_tag = "✅ GALIOJA" if h["status"] == "galioja" else "⚠️ NETEKO GALIOS"
         parts.append(
-            f"[{h['str_number']}, {h['punkt']} p. | {status_tag}]\n"
-            f"{h['text']}\n"
-            f"Šaltinis: {h['source_url']}"
+            f"[{i}] {h['str_number']}, {h['punkt']} p. [{status_tag}]\n"
+            f"{h['text']}"
         )
-    return "\n\n---\n\n".join(parts)
+        sources.append(f"[{i}] {h['str_number']}, {h['punkt']} p. — {h['source_url']}")
+    result = "\n\n".join(parts)
+    result += "\n\n---\nŠaltiniai:\n" + "\n".join(sources)
+    return result
 
 
 def answer(query: str, top_k: int = 5) -> dict:
