@@ -164,8 +164,20 @@ def do_search(query: str) -> dict:
         return demo_search(query)
     # Real RAG engine path
     raw = search(query)
-    ans = answer(query, raw)
-    return {"query": query, "answer": ans, "results": raw, "demo": False}
+    try:
+        ans_data = answer(query)
+        ans_text = ans_data.get("answer", "")
+        model = ans_data.get("model")
+    except Exception:
+        ans_text = ""
+        model = None
+    if not ans_text:
+        parts = []
+        for r in raw[:3]:
+            status = "✅ Galioja" if r["status"] == "galioja" else "⚠️ NETEKO GALIOS"
+            parts.append(f"{r['str_number']}, {r['punkt']} p. [{status}]\n\"{r['text'][:300]}\"")
+        ans_text = "Rasti STR punktai:\n\n" + "\n\n".join(parts)
+    return {"query": query, "answer": ans_text, "results": raw, "demo": False, "model": model}
 
 
 # ---------------------------------------------------------------------------

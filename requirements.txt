@@ -3,5 +3,6 @@ chromadb
 requests
 beautifulsoup4
 groq
+openai
 sentence-transformers
 python-docx

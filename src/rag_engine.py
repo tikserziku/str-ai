@@ -166,11 +166,8 @@ def _build_context(hits: list[dict]) -> str:
 
 def answer(query: str, top_k: int = 5) -> dict:
     """
-    Search relevant STR clauses and generate an LLM answer via Groq API.
-
-    Returns
-    -------
-    dict with keys: answer, sources (list of hits), model
+    Search relevant STR clauses and generate an LLM answer.
+    Supports NVIDIA Nemotron (primary) and Groq (fallback).
     """
     hits = search(query, top_k=top_k)
     context = _build_context(hits)
@@ -180,35 +177,58 @@ def answer(query: str, top_k: int = 5) -> dict:
         f"---\nVartotojo klausimas: {query}"
     )
 
-    api_key = os.environ.get("GROQ_API_KEY", "")
-    if not api_key:
-        return {
-            "answer": (
-                "[ERROR] GROQ_API_KEY not set. "
-                "Set the environment variable and try again.\n\n"
-                "Search results (raw):\n" + _build_context(hits)
-            ),
-            "sources": hits,
-            "model": None,
-        }
+    messages = [
+        {"role": "system", "content": _SYSTEM_PROMPT},
+        {"role": "user", "content": user_message},
+    ]
 
-    model = "llama-4-scout-17b-16e-instruct"
-    client = Groq(api_key=api_key)
+    # Try NVIDIA Nemotron first
+    nvidia_key = os.environ.get("NVIDIA_API_KEY", "")
+    if nvidia_key:
+        try:
+            from openai import OpenAI
+            client = OpenAI(
+                base_url="https://integrate.api.nvidia.com/v1",
+                api_key=nvidia_key,
+            )
+            chat = client.chat.completions.create(
+                model="nvidia/llama-3.1-nemotron-70b-instruct",
+                messages=messages,
+                temperature=0.2,
+                max_tokens=1024,
+            )
+            return {
+                "answer": chat.choices[0].message.content,
+                "sources": hits,
+                "model": "nvidia/nemotron-70b",
+            }
+        except Exception:
+            pass  # fallback to Groq
 
-    chat = client.chat.completions.create(
-        model=model,
-        messages=[
-            {"role": "system", "content": _SYSTEM_PROMPT},
-            {"role": "user", "content": user_message},
-        ],
-        temperature=0.2,
-        max_tokens=1024,
-    )
+    # Try Groq
+    groq_key = os.environ.get("GROQ_API_KEY", "")
+    if groq_key:
+        try:
+            client = Groq(api_key=groq_key)
+            chat = client.chat.completions.create(
+                model="llama-4-scout-17b-16e-instruct",
+                messages=messages,
+                temperature=0.2,
+                max_tokens=1024,
+            )
+            return {
+                "answer": chat.choices[0].message.content,
+                "sources": hits,
+                "model": "groq/llama-4-scout",
+            }
+        except Exception:
+            pass
 
+    # No LLM available — return raw results
     return {
-        "answer": chat.choices[0].message.content,
+        "answer": _build_context(hits),
         "sources": hits,
-        "model": model,
+        "model": None,
     }
 
 
