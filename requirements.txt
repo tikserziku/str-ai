@@ -1,0 +1,6 @@
+flask
+chromadb
+requests
+beautifulsoup4
+groq
+sentence-transformers
